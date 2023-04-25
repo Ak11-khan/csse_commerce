@@ -1,0 +1,426 @@
+<?php
+include('../includes/connect.php');
+include('../functions/common_functions.php');
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment page</title>
+   <!-- bootstrap css link -->
+   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+   <link rel="stylesheet" href="/style.css">
+   <style>
+  .pay_img{
+    width: 100%;
+  }
+
+  .profile_img{
+  width: 90%;
+  height: 100%; 
+  display:block;
+  margin-top: 50px;;
+  
+}
+h2{
+margin-top: 22px;
+text-align: center;
+font-size: 30px;
+font-weight: 600;
+color: #e6beae;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial;
+  padding: 10px;
+  background: #e7d8c9;
+}
+.header {
+  width: 100%;
+  padding: 15px;
+  text-align: center;
+  background: ccd5ae;
+}
+.topnav {
+    
+    padding: 20px 0;
+    background-color:#b2967d;
+    width: 100%;
+    overflow: hidden;
+  }
+  img ,li {
+  float: left;
+  overflow: scroll;
+}
+.header .logo{
+    display:flex;
+    align-items: center;
+}
+
+  .nav_top li a{
+    display:inline-block;
+    text-decoration: none;
+    padding: 10px 12px;
+    /* text-align: center; */
+  }
+  .logo{
+  height: 55px;
+    width: 55px;
+    position: relative;
+   
+}
+.nav_bottom{
+  padding: 5px 0;
+    background-color:#6c757d;
+    width: 98%;
+    text-align: center;
+    overflow: hidden;
+    margin-left: 13px;
+}
+.logo-text h3{
+margin-top: 22px;
+text-align: center;
+font-size: 30px;
+font-weight: 600;
+color: #e6beae;
+}
+.logo-text p{
+  text-align: center;
+  color: #6c757d;
+  margin-bottom: 22px;
+}
+.row {
+      display: flex;
+      flex-wrap: wrap;
+      margin: -8px;
+    }
+    .col-md-10 {
+      /* margin-right: 5px; */
+      width: 78.33%;
+      padding: 18px;
+      margin: auto;
+      
+    }
+    .col-md-2 {
+      width: 16.67%;
+      padding: 5px;
+      background-color: #eee4e1;
+      text-align:center;
+      height: 100%;
+      margin: auto;
+      z-index: 100;
+    }
+    .col-md-2 li{
+      
+    
+    height: 50px;
+    list-style: none;
+      }
+      .col-md-2 a {
+  text-decoration: none;
+  padding: 10px 12px;
+  color: black;
+}
+
+.side_nav1 {
+  display: flex;
+  flex-direction: column;
+
+}
+.side_nav2 {
+  display: flex;
+  flex-direction: column;
+}
+.product-card {
+  width: 21rem;
+  background-color: #eee4e1;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  width: 100%;
+  max-width: 20rem;
+}
+
+.product-image {
+  height: 12rem;
+  overflow: hidden;
+}
+.product-title {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.product-description {
+  margin-bottom: 1rem;
+}
+
+.product-price {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  
+}
+.product-price-add-to-cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.btn {
+  margin-top: 0.5rem;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  font-size: 0.875rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+
+}
+
+.btn-info {
+  background-color: #e6beae;
+  border-color: #e6beae;
+  color: #fff;
+ 
+}
+
+.btn-info:hover {
+  background-color: #e6beae;
+  border-color: #e6beae;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+@media screen and (max-width: 768px) {
+    .product-card {
+    width: 48%;
+    }
+    .sidebar {
+    width: 100%;
+    margin-top: 20px;
+    }
+    .card {
+      margin-bottom: 20px;
+      width: 100%;
+    }
+    }
+    /* .header {
+    max-width: 1300px;
+    margin: 0 auto;
+  } */
+
+
+
+/* .logo {
+  margin-right: 20px;
+} */
+
+.nav-toggle {
+  display: none;
+}
+
+/* .nav-toggle-label {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: block;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.nav-toggle-label span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+  }
+
+.nav-toggle-label span:before,
+.nav-toggle-label span:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    position: absolute;
+      left: 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-toggle-label span:before {
+top: -10px;
+transition: transform 0.3s ease-in-out;
+}
+
+.nav-toggle-label span:after {
+bottom: -10px;
+transition: transform 0.3s ease-in-out;
+}
+
+  .nav-toggle:checked + .nav-toggle-label span:before {
+transform: rotate(-45deg);
+top: 0;
+}
+
+  .nav-toggle:checked + .nav-toggle-label span:after {
+transform: rotate(45deg);
+bottom: 0;
+} */
+
+.nav_top {
+margin-left: auto;
+}
+
+.nav_top .nav-item {
+margin-left: 2rem;
+}
+
+.nav_top .nav-link {
+color: #fff;
+text-decoration: none;
+padding-left: 15px;
+}
+
+.nav_top .nav-link:hover {
+color: #fff;
+border-bottom: 2px solid #fff;
+}
+
+/* .logo {
+height: 50px;
+margin-right: 1rem;
+} */
+
+.form-control {
+margin-right: 1rem;
+}
+
+.btn-outline-light {
+color: #fff;
+border-color: #fff;
+}
+
+.btn-outline-light:hover {
+background-color: #fff;
+color: #000;
+}
+
+/* Add this to override the default bootstrap styles */
+.navbar-collapse {
+  justify-content: flex-end;
+}
+
+
+.card-img-top{
+  width: 100%;
+  height:200px;
+  object-fit: contain;
+  aspect-ratio: 16/9;
+}
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #b2967d;
+    padding: 15px;
+} 
+@media screen and (max-width: 800px) {
+  .col-md-10 , .col-md-2{
+      /* margin-right: 5px; */
+      width: 100%;
+      padding: 18px;
+      margin: auto;
+      padding: 0;
+    }
+  
+ 
+}
+
+
+   </style>
+</head>
+<body>
+   <!--navbar -->
+ 
+   <div class="container-fluid p-0">
+    <!-- first child -->
+       <nav class="navbar navbar-expand-lg navbar-light bbg-light">
+  <div class="container-fluid">
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <div class="header">
+     <nav class="topnav">
+      <span>
+        <img src="../images/logo.png" alt="" class="logo">
+        </span>
+     
+      <ul class="nav_top">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="../index.php">Add More</a>
+        </li>
+                <li class="nav-item">
+          <a class="nav-link" href="profile.php">My Info</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Help</a>
+        </li>
+         </ul>
+         </div>
+  </div>
+</nav>
+
+  <!-- php code to access user id -->
+  <?php
+  $users_ip=getIPAddress();
+  $get_user="select * from user_table where user_ip='$users_ip'";
+  $result=mysqli_query($con,$get_user);
+  $row_query=mysqli_fetch_array($result);
+  //$user_id=$run_query['user_id column name present inside database']
+  $user_id=$row_query['user_id'];
+
+  ?>
+  <!-- container will not take 100% of width  -->
+  <div class="container">
+    <h2 class="text-center text-info mt-5" >Payment Options</h2>
+    <!-- side by side option we create row -->
+    <div class="row d-flex justify-content-center align-items-center
+    mt-5 py-4">
+      <!-- giving 6 column space for this image -->
+      <div class="col-md-6">
+      <a href="https://www.paypal.com" target="_blank"><img src="../images/payment-methods.jpeg" alt="" class="pay_img"></a>
+      </div>
+      <div class="col-md-6">
+      <a href="order.php?user_id=<?php echo $user_id ?>" target="_blank"><h2 class="text-center">Pay Cash</h2></a>
+      <!-- echo $user_id; -->
+      </div>
+    </div>
+    
+  </div>
+</body>
+</html>
