@@ -35,7 +35,8 @@ while($row=mysqli_fetch_assoc($result_query)){
     <p class='product-description'>$product_description</p>
     <div class='product-price-add-to-cart'>
       <p class='product-price'><span>$</span></span>$product_price</p>
-      <a href='index.php?add_to_cart=$product_id' class='btn btn-info' >Add to Cart</a>
+      <a href='index.php?add_to_cart=$product_id' class='btn btn-info' id='btn' onclick='showItemAddedMessage()'>Add to Cart</a>
+
       <a href='product_details.php?product_id=$product_id' class='btn btn-secondary'>View More</a>
     </div>
   </div>
@@ -274,7 +275,6 @@ while($row=mysqli_fetch_assoc($result_query)){
       <p class='product-price'>$product_price</p>
       <a href='index.php?add_to_cart=$product_id' class='btn btn-info'>Add to Cart</a>
       <a href='product_details.php?product_id=$product_id' class='btn btn-secondary'>View More</a>
-      <div class='message' id='message'>
     </div>
   </div>
 </div>
@@ -334,27 +334,16 @@ $get_product_id=$_GET['add_to_cart'];
 $select_query="select * from cart_details where ip_address='$get_ip' and product_id=$get_product_id";
 $result_query=mysqli_query($con,$select_query);
 $num_of_row=mysqli_num_rows($result_query);
-
 if($num_of_row>0){
-  
-  // echo "<script> document.write('<h4 style=\"color: green; font-size: 24px;\">Already present in the cart</h4>');</script>";
-  echo "<script> document.getElementById('message').innerHTML = '<h5 style=\"color: white; font-size: 17px;\">Already present in the cart</h5>';
-  setTimeout(function() {
-    document.getElementById('message').innerHTML = '';
-  }, 3000); // 3000 milliseconds = 3 seconds</script>";
-  // echo "<script>window.open('index.php','_self')</>";
+  echo "<script>alert('This item is already present in cart')</script>";
 
+  echo "<script>window.open('index.php','_self')</script>";
 }else{
   $insert_query="insert into cart_details (product_id,ip_address,quantity)
   values ($get_product_id,'$get_ip',0)";
   $result_query=mysqli_query($con,$insert_query);
-//  echo "<script> document.write('<h4 style=\"color: green; font-size: 24px;\">Item added successfully! </h4>');</script>";
-echo "<script> document.getElementById('message').innerHTML = '<h5 style=\"color: white; font-size:15px;\">Item added successfully!</h5>';
-setTimeout(function() {
-  document.getElementById('message').innerHTML = '';
-}, 3000); // 3000 milliseconds = 3 seconds</script>";
-
-// echo "<script>window.open('index.php','_self')</scrip>";
+  echo "<script>alert('Item is added successfully')</script>";
+  echo "<script>window.open('index.php','_self')</script>";
 }
 }
 }

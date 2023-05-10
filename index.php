@@ -28,6 +28,8 @@ body {
   font-family: Arial;
   padding: 10px;
   background: #e7d8c9;
+  display: grid;
+  place-items: center;
 }
 .header {
   width: 100%;
@@ -104,7 +106,7 @@ color: #e6beae;
       text-align:center;
       height: 100%;
       margin: auto;
-      z-index: 100;
+      /* z-index: 2; */
     }
     .col-md-2 li{
       
@@ -122,10 +124,12 @@ color: #e6beae;
   display: flex;
   flex-direction: column;
 
+
 }
 .side_nav2 {
   display: flex;
   flex-direction: column;
+  
 }
 .product-card {
   width: 21rem;
@@ -133,18 +137,26 @@ color: #e6beae;
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
   overflow: hidden;
-  width: 100%;
+  padding: 20px;
+  margin: 16px;
   max-width: 20rem;
 }
 
 .product-image {
   height: 12rem;
   overflow: hidden;
+  object-fit: contain;
 }
 .product-title {
   margin-bottom: 0.5rem;
   font-size: 1.25rem;
   font-weight: bold;
+  background-clip: content-box;
+  -webkit-background-clip: content-box;
+  -moz-background-clip: content-box;
+  background: -webkit-linear-gradient(45deg, #b2967d, #e6beae);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .product-description {
@@ -155,7 +167,7 @@ color: #e6beae;
   margin-bottom: 0.5rem;
   font-size: 1.25rem;
   font-weight: bold;
-  
+  color:#545b62;
 }
 
 .product-price-add-to-cart {
@@ -201,6 +213,12 @@ color: #e6beae;
   background-color: #5a6268;
   border-color: #545b62;
 }
+#message{
+  padding:1rem 1rem;
+  background-color: #e6beae;
+  /* color:#ffffff;
+  font-size: 24px; */
+}
 @media screen and (max-width: 768px) {
     .product-card {
     width: 48%;
@@ -225,7 +243,7 @@ color: #e6beae;
   margin-right: 20px;
 } */
 
-.nav-toggle {
+/* .nav-toggle {
   display: none;
 }
 
@@ -279,7 +297,7 @@ top: 0;
   .nav-toggle:checked + .nav-toggle-label span:after {
 transform: rotate(45deg);
 bottom: 0;
-}
+} */
 
 .nav_top {
 margin-left: auto;
@@ -358,7 +376,11 @@ color: #000;
   
 
 }
- 
+.active{
+  background-color: #e7d8c9;
+  border-radius: 5px;
+  color: white;
+}
 
 @media screen and (max-width:675px){
 
@@ -373,7 +395,7 @@ color: #000;
    left:0; */
     transform:translateY(-100%);
     z-index: -1; 
-   transition:.6s;
+   transition:.8s;
    }
    .nav_bottom{
     display: none;
@@ -385,38 +407,48 @@ color: #000;
     top:45px;
    left:0;
    }
+   /* }
    .topnav li a{
     display: grid;
-}
- .navbar-toggle{
+} */
+  .navbar-toggle{
   display:grid !important;
 }
- .navbar-toggle{
+  .topnav .navbar-toggle{
   display:none;
   height:min-content;
   margin:18px -10px 0 0;
+  cursor:pointer;
 
-}
-.navbar-toggle .bar{
+} 
+label[for="toggle"]{
   width:40px;
-
   height:5px;
   margin-bottom:10px ;
   background-color: #ffffff;
   border-radius: 10%;
-  transition:.4s;
-}
-.search-form{
+  transition: .8s;
+  
+} 
+/* .search-form{
   display: none;
+} */
+input .toggle{
+  display:grid;
+  }
 }
-}
+
 
   </style>
   </head>
   <body>
     <!--navbar -->
- <input type="checkbox">
 
+    <!-- responsive hamburger -->
+    <input type="checkbox" class="toggle" id="toggle">
+  <!-- <label for="nav-toggle" class="nav-toggle-label">
+    <span></span>
+  </label> -->
     <div class="header">
      <nav class="topnav">
 
@@ -429,8 +461,9 @@ color: #000;
          <span class="bar"></span>
          <span class="bar"></span>
       </label>
-      <ul class="nav_top">
-        <li class="nav-item">
+
+      <ul class="nav_top" id="list">
+        <li class="nav-item active">
           <a class="nav-link active" aria-current="page" href="index.php">Home</a>
         </li>
         <li class="nav-item">
@@ -466,9 +499,8 @@ color: #000;
 
 
 <!-- calling cart function  -->
-<?php
-cart();
-?>
+
+
 <!-- second child -->
 
 <nav class="nav_bottom">
@@ -477,12 +509,12 @@ cart();
        
        if(!isset($_SESSION['user'])){
         echo "<li class='nav-item'>
-        <a class='nav-link active' aria-current='page' href='#'>Welcome Guest</a>
+        <a class='nav-link ' aria-current='page' href='#'>Welcome Guest</a>
       </li>";
          
     }else{
             echo "<li class='nav-item'>
-            <a class='nav-link active' aria-current='page' href='#'>Welcome ".$_SESSION['user']."</a></li>";
+            <a class='nav-link ' aria-current='page' href='#'>Welcome ".$_SESSION['user']."</a></li>";
           }  
 
 
@@ -504,7 +536,11 @@ cart();
 <div class="text logo-text">
   <h3 class="heading1"> Coming Soon </h3>
   <p class="sub_heading"> Welcome to A Store</p>
+  <div id="message"><?php
+cart();
+?></div>
 </div>
+
 
 
 <!-- fourth child -->
@@ -512,17 +548,20 @@ cart();
   <div class="col-md-10">
  <!-- front products -->
   <div class="row">
+
+
 <!-- fetching products  -->
 <?php
 // calling function
 get_product();
+
 get_unique_categories();
 get_unique_brands();
 // $ip = getIPAddress();  
 // echo 'User Real IP Address - '.$ip;  
 
 ?>
-    
+  
 <!-- row end -->
 </div>
 <!-- column end -->
@@ -571,7 +610,25 @@ include('./includes/footer.php')
 
 
     <!-- bootstrap js  link  -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+
+    //  var list=document.getElementById("list");
+    //  var btns=list.getElementsByClassName("nav-item");   
+    //  var i;
+    
+    //  for(i=0;i<btns.length;i++){
+    //     btns[i].addEventListener("click",function(){
+    //     var current=document.getElementsByClassName("active"); 
+    //     current[0].className=current[0].className.replace("active","");
+    //     console.log(this.className);
+    //     this.className+="active"; 
+    //   })
+    //  }
+
+   
+    </script>
+
+   
   </body>
 </html>
 

@@ -11,7 +11,107 @@ include('../functions/common_functions.php')
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User- registration</title>
       <!-- bootstrap css link -->
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+      <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+      <style>
+        
+        body {
+  font-family: Arial;
+  padding: 10px;
+  background: #e7d8c9;
+}
+        /* Form container */
+.container-fluid {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  /* padding: 0 15px; */
+ 
+}
+
+/* Form title */
+h2.text-center {
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color:#e6beae;
+}
+
+/* Form wrapper */
+form {
+  background-color: #eee4e1;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+/* div style */
+.form-outline{
+  margin-bottom:16px ;
+}
+/* Form input labels */
+.form-label{
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-clip: content-box;
+  -webkit-background-clip: content-box;
+  -moz-background-clip: content-box;
+  background: -webkit-linear-gradient(45deg, #b2967d, #e6beae);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+   
+}
+
+/* Form input fields */
+.form-control {
+  display: block;
+  width: 100%;
+  padding:5px 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s;
+}
+
+.form-control:focus {
+  border-color: #6c757d;
+}
+
+/* Submit button */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #e6beae;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 9px;
+}
+
+.btn:hover {
+  background-color: #e6beae;
+}
+
+/* Small text */
+.small {
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+/* Link */
+.text-danger {
+  color: brown;
+  text-decoration: none;
+}
+
+.text-danger:hover {
+  text-decoration: underline;
+}
+
+      </style>
 </head>
 <body>
   <div class="container-fluid">
@@ -29,34 +129,34 @@ include('../functions/common_functions.php')
   <input type="text" id="user" name="user" class="form-control" placeholder="Enter your username" required="required" autocomplete="off">
   </div>
 <!-- email -->
-<div class="form-outline mb-4">
+<div class="form-outline ">
   <label for="user_email" class="form-label">Email</label>
   <input type="email" id="user_email" name="user_email"  class="form-control" placeholder="Enter your e-mail" required="required">
   </div>
   <!-- image -->
-  <div class="form-outline mb-4">
+  <div class="form-outline ">
   <label for="user_img" class="form-label">User Image</label>
   <input type="file" id="user_img" name="user_img" class="form-control"  required="required">
   </div>
   <!-- password -->
-  <div class="form-outline mb-4">
+  <div class="form-outline ">
   <label for="user_pass" class="form-label">Password</label>
   <input type="password" id="user_pass" name="user_pass" class="form-control" placeholder="Enter your password" required="required" autocomplete="off">
   </div>
 <!-- con-password -->
-<div class="form-outline mb-4">
+<div class="form-outline ">
   <label for="con_pass" class="form-label">Confirm Password</label>
   <input type="password" id="con_pass" name="con_pass" class="form-control" placeholder="Enter your password" required="required" autocomplete="off">
   </div>
 
   <!-- address -->
-<div class="form-outline mb-4">
-  <label for="user_add" class="form-label"><Address>Address</Address></label>
+<div class="form-outline ">
+  <label for="user_add" class="form-label">Address</label>
   <input type="text" id="user_add" name="user_add" class="form-control" placeholder="Enter your Address" required="required" autocomplete="off">
   </div>
 
    <!-- contact -->
-<div class="form-outline mb-4">
+<div class="form-outline ">
   <label for="user_contact" class="form-label">Contact</label>
   <input type="text" id="user_contact" name="user_contact" class="form-control" placeholder="Enter your Mobile Number" required="required" autocomplete="off">
   </div>

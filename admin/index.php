@@ -124,6 +124,13 @@ td {
   text-align: center;
   padding: 15px;
 }
+/* .admin{
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+.buttoncss{
+  margin-top: 15px;
+} */
 </style>
 </head>
 <body>
@@ -153,7 +160,7 @@ td {
   <div class="col md-12 ">
    <div class="p-3">
     <a href="#"><img src="../images/Orangejuice.jpeg" alt="" class="admin_image"></a>
-    <p class="">Admin</p>
+    <p class="admin">Admin</p>
    </div>
    <!-- button*10>a.nav-link.text-light.bg-info.my-1 -->
    <div class="button text-center">
@@ -166,6 +173,8 @@ td {
     <button><a href="index.php?view_brands" class="nav-link ">View Brand</a></button>
     <button><a href="index.php?list_orders" class="nav-link ">All Orders</a></button>
     <button><a href="index.php?list_payments" class="nav-link ">All payments</a></button>
+    <!-- creating for test purpose -->
+    <button><a href="index.php?payments" class="nav-link "> payments</a></button>
     <button><a href="index.php?list_users" class="nav-link ">List users</a></button>
     <button><a href="../users_area/logout.php" class="nav-link ">Logout</a></button>
    </div>
@@ -178,6 +187,10 @@ td {
 <div class="container my-3">
 
 <?php
+if(isset($_GET['payments'])){
+  include('payments_u.php');
+
+}
 if(isset($_GET['insert_categories'])){
   include('insert_categories.php');
 }

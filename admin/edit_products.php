@@ -35,9 +35,7 @@ $product_price=$row_q['product_price'];
             $row_b=mysqli_fetch_assoc($result_b);
             $brand_title=$row_b['brand_title'];
             // echo $brand_title;
-  
- 
-       
+      
 
 }
 ?>
